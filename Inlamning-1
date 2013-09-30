@@ -1,0 +1,56 @@
+package 
+{
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.text.TextField;
+	
+	/**
+	 * ...
+	 * @author Angelica Westlin
+	 */
+	public class Main extends Sprite 
+	{
+		
+		public var monsterName:String = "Perra the Hobgoblin";
+		public var monsterHP:int = 150;
+		public var monsterDmg:int = 17;
+		public var monsterDmgDealt:int;
+		
+		public var playerName:String = "Angie";
+		public var playerHP:int = 280;
+		public var playerDmg:int = 30;
+		public var playerDmgDealt:int;
+		
+		public var t:TextField = new TextField();
+		public function Main():void 
+		{
+			if (stage) init();
+		}
+		
+		private function init(e:Event = null):void 
+		{
+			// entry point
+			t.height = 2000; 
+			t.width = 500;
+			addChild(t);
+			for (var i:int = 1; i <= 5; i++) // Kör loopen fem gånger
+			{
+				t.appendText("|Round " + String(i) + "|\n"); // Rundan
+				t.appendText(playerName + "'s health: " + playerHP + "\n"); // hjältens hp
+				t.appendText(monsterName + "'s health: " + monsterHP + "\n"); // monstrets hp
+				
+				monsterDmgDealt = monsterDmg * Math.random() + monsterDmg; // Skada som monstret gör
+				playerDmgDealt = playerDmg * Math.random() + playerDmg; // Skada som hjälten gör
+				
+				t.appendText(playerName + " deals " + String(playerDmgDealt) + " damage to " + monsterName + "\n"); // Hur mycket skada hjälten gör på monstret
+				t.appendText(monsterName + " deals " + String(monsterDmgDealt) + " damage to " + playerName + "\n\n"); // Hur mycket skada monstret gör på hjälten
+				
+				playerHP = playerHP - monsterDmgDealt; //Den skada som blir given
+				monsterHP = monsterHP - playerDmgDealt;
+				
+			}
+		}
+		
+	}
+	
+}
