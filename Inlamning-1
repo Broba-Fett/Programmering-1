@@ -12,7 +12,7 @@ package
 	{
 		
 		public var monsterName:String = "Perra the Hobgoblin";
-		public var monsterHP:int = 150;
+		public var monsterHP:int = 180;
 		public var monsterDmg:int = 17;
 		public var monsterDmgDealt:int;
 		
@@ -35,6 +35,13 @@ package
 			addChild(t);
 			for (var i:int = 1; i <= 5; i++) // Kör loopen fem gånger
 			{
+				if (playerHP <= 0) {
+					t.appendText(playerName + " died! The game is over!");
+					break;
+				} else if (monsterHP <= 0) {
+					t.appendText(monsterName + " died! The game is over!");
+					break;
+				}
 				t.appendText("|Round " + String(i) + "|\n"); // Rundan
 				t.appendText(playerName + "'s health: " + playerHP + "\n"); // hjältens hp
 				t.appendText(monsterName + "'s health: " + monsterHP + "\n"); // monstrets hp
